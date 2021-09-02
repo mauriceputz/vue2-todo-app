@@ -1,19 +1,54 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div>
+      <div class="container mt-5">
+        <div class="row">
+          <div class="col-6 offset-3">
+            <div class="card">
+
+              <div class="text-center">
+                <p>MACHERJEK TODO APP</p>
+              </div>
+
+              <div>
+                <todoEntry />
+              </div>
+
+              <div class="mt-3 text-center">
+                <todoList />
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import todoEntry from "./components/todoEntry.vue";
+import todoList from "./components/todoList.vue";
+
+import { mapGetters } from "vuex";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    todoEntry,
+    todoList
+  },
+  computed: {
+    ...mapGetters({
+        'todos': 'getTodos',
+      }),
+  },
+  methods: {
+    markAll() {
+      console.log();
+    },
+  },
+};
 </script>
 
 <style>
