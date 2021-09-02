@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # vue-todo-app
 
 ## Project setup
@@ -22,3 +23,6 @@ yarn lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+=======
+# vue2-todo-app
+>>>>>>> d21e167d759e5ea3dabeb8f8894f198caf400871
