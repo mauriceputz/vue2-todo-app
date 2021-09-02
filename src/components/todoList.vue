@@ -1,19 +1,15 @@
 <template>
   <div>
     <div v-if="todos.length > 0">
-        <div>
-          <todoListItem
-            v-for="todo in todos"
-            :key="todo.id"
-            :todo="todo"
-          />
-        </div>
+      <div>
+        <todoListItem v-for="todo in todos" :key="todo.id" :todo="todo" />
+      </div>
     </div>
-     <div>
-                <button class="btn btn-primary mb-2" @click="markAll">
-                  Alle markieren
-                </button>
-              </div>
+    <div>
+      <button class="btn btn-primary mb-2" @click="markAll">
+        Alle markieren
+      </button>
+    </div>
   </div>
 </template>
 
@@ -30,12 +26,9 @@ export default {
     ...mapGetters({
       todos: "getTodos",
     }),
-    
   },
   methods: {
-    markAll() {
-        
-    }
+    markAll() {},
   },
 };
 </script>

@@ -1,36 +1,51 @@
 <template>
   <div class="todo-list">
-    <div class="todo-item">
+    <div 
+        class="todo-item"
+        :class="[todo.completed ? activeClass : defaulClass]">
       <div class="checker">
-        <span class=""><input type="checkbox" /></span>
+        <span class=""><input type="checkbox" @click="changeState(todo)"/></span>
       </div>
       <span> {{ todo.title }} </span>
-      <i class="fas fa-times float-right remove-todo-item"></i>
+      <i class="fas fa-times float-right remove-todo-item" @click="deleteTodoEntry(todo)" style="cursor: pointer;"></i>
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapActions } from "vuex";
 
 export default {
   name: "todoListItem",
   props: ["todo"],
-  computed: {
-    ...mapGetters({
-      todos: "getTodos",
-    }),
+  data() {
+      return {
+          activeClass: 'done',
+          defaulClass: 'not-done',
+      }
   },
   methods: {
     ...mapActions(["addTodo", "deleteTodo", "changeTodoState"]),
-    completeActivity(item) {
-      this.changeActivityState({ activity: item });
+    changeState(todo) {
+      this.changeTodoState({ todo });
     },
+    deleteTodoEntry(todo) {
+        this.deleteTodo( {todo} );
+    }
   },
 };
 </script>
 
 <style scoped>
+
+.done {
+    text-decoration: line-through;
+}
+
+.not-done {
+    text-decoration: none;
+}
+
 .todo-list {
     margin: 10px 0
 }

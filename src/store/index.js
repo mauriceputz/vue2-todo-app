@@ -35,12 +35,11 @@ export default new Vuex.Store({
     addTodo({commit}, {newTodo}) {
       commit('addTodo', newTodo)
     },
-    deleteTodo({commit}, {newTodo}) {
-      commit('deleteTodo', newTodo)
-
+    deleteTodo({commit}, {todo}) {
+      commit('deleteTodo', todo)
     },
-    changeTodoState({commit}, {newTodo}){
-      commit('changeTodoState', newTodo)
+    changeTodoState({commit}, {todo}){
+      commit('changeTodoState', todo)
     },
   },
   getters: {
