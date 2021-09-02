@@ -72,7 +72,7 @@ export default new Vuex.Store({
     changeTodoState({commit}, {todo}){
       commit('changeTodoState', todo)
     },
-    makAll({commit}){
+    markAll({commit}){
       commit('markAll')
     },
   },

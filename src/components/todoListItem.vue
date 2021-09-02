@@ -4,8 +4,13 @@
     <div v-if="!todo.edit"
         class="todo-item"
         :class="[todo.completed ? activeClass : defaulClass]">
-      <div class="checker">
-        <span class=""><input type="checkbox" @click="changeState(todo)"/></span>
+      <div class="checker mr-2">
+        <span class="">
+            <input
+                type="checkbox" 
+                @click="changeState(todo)" 
+                :checked="todo.completed"/>
+        </span>
       </div>
       <span @dblclick="editEvent(todo)"> {{ todo.title }} </span>
       <i class="fas fa-times float-right remove-todo-item" @click="deleteTodoEntry(todo)" style="cursor: pointer;"></i>
