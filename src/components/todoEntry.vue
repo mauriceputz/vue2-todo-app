@@ -33,6 +33,7 @@ export default {
             const newTodo = {
               title: this.todo,
               completed: false,
+              edit: false,
               id: uuid()
             };
             this.addTodo({newTodo});

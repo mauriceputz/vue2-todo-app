@@ -1,14 +1,29 @@
 <template>
   <div class="todo-list">
-    <div 
+
+    <div v-if="!todo.edit"
         class="todo-item"
         :class="[todo.completed ? activeClass : defaulClass]">
       <div class="checker">
         <span class=""><input type="checkbox" @click="changeState(todo)"/></span>
       </div>
-      <span> {{ todo.title }} </span>
+      <span @dblclick="editEvent(todo)"> {{ todo.title }} </span>
       <i class="fas fa-times float-right remove-todo-item" @click="deleteTodoEntry(todo)" style="cursor: pointer;"></i>
     </div>
+
+    <div v-else>
+            <input
+                type="text"
+                class="form-control"
+                :placeholder="todo.title"
+                v-model="newTodoTitle"
+            />
+            <hr>
+            <i class="fas fa-check"
+            style="cursor: pointer"
+            @click="updateEvent(todo, todo.title, newTodoTitle)"
+            ></i>
+        </div>
   </div>
 </template>
 
@@ -22,12 +37,22 @@ export default {
       return {
           activeClass: 'done',
           defaulClass: 'not-done',
+          newTodoTitle: ''
       }
   },
   methods: {
-    ...mapActions(["addTodo", "deleteTodo", "changeTodoState"]),
+    ...mapActions(["addTodo", "deleteTodo", "changeTodoState", "updateTodo", "changeEditState"]),
     changeState(todo) {
-      this.changeTodoState({ todo });
+       this.changeTodoState({ todo });
+    },
+    editEvent(todo) {
+        this.changeEditState({ todo });
+    },
+    updateEvent(todo, oldTodoTitle, newTodoTitle) {
+        if (newTodoTitle === '') newTodoTitle = oldTodoTitle;
+        todo.title = newTodoTitle
+        this.updateTodo({todo});
+        this.newTodoTitle = '';
     },
     deleteTodoEntry(todo) {
         this.deleteTodo( {todo} );
