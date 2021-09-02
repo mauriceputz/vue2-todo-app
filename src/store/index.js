@@ -49,6 +49,12 @@ export default new Vuex.Store({
       });
       localStorage.setItem('todoItems',JSON.stringify(state.todoItems));
     },
+    markAll(state) {
+      state.todoItems.map((noteObj)=> {
+        noteObj.completed = true;
+      });
+      localStorage.setItem('todoItems',JSON.stringify(state.todoItems));
+    }
   },
   actions: {
     addTodo({commit}, {newTodo}) {
@@ -65,6 +71,9 @@ export default new Vuex.Store({
     },
     changeTodoState({commit}, {todo}){
       commit('changeTodoState', todo)
+    },
+    makAll({commit}){
+      commit('markAll')
     },
   },
   getters: {

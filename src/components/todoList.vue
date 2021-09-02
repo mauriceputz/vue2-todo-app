@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import todoListItem from "./todoListItem.vue";
 
 export default {
@@ -28,7 +28,7 @@ export default {
     }),
   },
   methods: {
-    markAll() {},
+    ...mapActions(["markAll"]),
   },
 };
 </script>
